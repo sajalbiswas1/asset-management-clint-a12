@@ -135,7 +135,6 @@ const NavBar = () => {
                         </>
                             : <div className="flex md:block">
                                 <Link to={'/logIn'} className="text-white bg-stone-700 rounded-lg px-3 hover:text-stone-700 border border-white hover:bg-white  py-1 text-base md:text-lg font-bold">LogIn</Link>
-                                <Link to={'/signup'} className="text-white bg-stone-700 rounded-lg px-3 ml-2 hover:text-stone-700 border border-white hover:bg-white py-1 text-base md:text-lg font-bold">Sign Up</Link>
                             </div>
                     }
                 </div>
