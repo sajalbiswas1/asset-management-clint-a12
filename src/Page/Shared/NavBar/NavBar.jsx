@@ -29,7 +29,7 @@ const NavBar = () => {
                                     textDecoration: isActive ? "underline" : '',
                                 };
                             }}>Home</NavLink></li>
-                            <li className="text-black"><NavLink className="md:text-xl " to={'/addblog'} style={({ isActive }) => {
+                            <li className="text-black"><NavLink className="md:text-xl " to={'/SignUp'} style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : "",
                                     color: isActive ? "red" : "",
@@ -65,7 +65,7 @@ const NavBar = () => {
                     </div>
                     <div className="flex items-center">
                     <img className="w-16" src="https://i.ibb.co/PMVBBg0/3587817.png" alt="" />
-                        <Link to={'/'}><p className="text-3xl font-bold flex flex-col">BloggerEx</p></Link>
+                        <Link to={'/'}><p className="text-3xl font-bold flex flex-col">Asset</p></Link>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -78,7 +78,7 @@ const NavBar = () => {
                                 textDecoration: isActive ? "underline" : '',
                             };
                         }}>Home</NavLink></li>
-                        <li><NavLink className="text-base hover:bg-white" to={'/addblog'} style={({ isActive }) => {
+                        <li><NavLink className="text-base hover:bg-white" to={'/SignUp'} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
                                 color: isActive ? "red" : "",
@@ -86,7 +86,7 @@ const NavBar = () => {
                                 textDecoration: isActive ? "underline" : '',
                             };
                         }}>Join as Employee</NavLink></li>
-                        <li><NavLink className="text-base hover:bg-white  " to={'/blogsall'} style={({ isActive }) => {
+                        <li><NavLink className="text-base hover:bg-white  " to={'/SignUpq'} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
                                 color: isActive ? "red" : "",

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { RiContactsLine } from 'react-icons/ri';
@@ -7,12 +7,12 @@ import { AiOutlineGithub, AiOutlineGoogle } from "react-icons/ai";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const Login = () => {
 
-    const { userLogin, changePassword, googleLogin } = useState()//useContext(AuthContext);
+    const { userLogin, changePassword, googleLogin } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const [errorLogin, setErrorLogin] = useState('');
     const [success, setSuccess] = useState('');
@@ -132,7 +132,6 @@ const Login = () => {
                     <p>LogIn with github</p>
                 </div>
             </div>
-
             <p className="text-base font-semibold text-center">Do not Have An Account? <Link className="text-[#5b66e0]" to={'/signup'}> Register</Link></p>
             <ToastContainer />
         </div>
