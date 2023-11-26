@@ -3,7 +3,7 @@ import NavBar from "../Page/Shared/NavBar/NavBar";
 
 const Main = () => {
     return (
-        <div className="bg-slate-600 h-72">
+        <div>
         <NavBar></NavBar>
         <Outlet></Outlet>
         </div>
