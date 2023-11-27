@@ -19,7 +19,6 @@ const About = () => {
             <div className="">
                 {
                     events?.map(event => <div key={event.idx}>
-{/* const { title, image, paragraph, paragraph2,event_on } = event */}
                         <div data-aos={`${event.event_on === 'false' ? "fade-up" : "fade-up"}`} data-aos-duration="2000" className={`${event.event_on === 'false' ? 'lg:flex lg:flex-row-reverse' : 'lg:flex'} gap-14 mb-14`}>
                             <div className='lg:w-1/2'>
                                 <img src={event.image} alt="" />
