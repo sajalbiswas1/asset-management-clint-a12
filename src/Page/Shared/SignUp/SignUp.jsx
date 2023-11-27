@@ -23,12 +23,12 @@ const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const name = e.target.name.value
-        // const url = e.target.url.value
+        const url = e.target.url.value
         const email = e.target.email.value;
         const password = e.target.password.value;
         const accepted = e.target.terms.checked;
-        const obj = { displayName: name, photoURL: '' }
-        const user = { displayName: name, photoURL: '', birthday: startDate, email, role: 'employee' }
+        const obj = { displayName: name, photoURL: url }
+        const user = { displayName: name, photoURL: url, birthday: startDate, email, role: 'employee' }
 
         console.log(user)
         // user update
@@ -138,6 +138,10 @@ const SignUp = () => {
                             <DatePicker className="border w-full  rounded-3xl text-base font-normal px-5 py-2 bg-[#F3F3F3]" selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
 
+                    </div>
+                    <div className="w-1/2">
+                    <p className="text-lg mt-4 font-medium mb-2">Photo URL</p>
+                    <input className="border w-full  rounded-3xl text-base font-normal px-5 py-2 bg-[#F3F3F3]" type="url" name="url" placeholder="Enter your image url" id="10002" /><br />
                     </div>
 
 

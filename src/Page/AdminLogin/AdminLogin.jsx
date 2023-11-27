@@ -42,14 +42,14 @@ const AdminLogin = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const name = e.target.name.value
-        // const url = e.target.url.value
+        const url = e.target.url.value
         const email = e.target.email.value;
         const password = e.target.password.value;
         const companyName = e.target.companyName.value;
         const companyLogo = e.target.logo.value;
         const accepted = e.target.terms.checked;
-        const obj = { displayName: name, photoURL: '' }
-        const user = { displayName: name, photoURL: '', birthday: startDate, email, companyName, companyLogo, role: 'admin',teamMember: parseInt(selectedOption.value) }
+        const obj = { displayName: name, photoURL: url }
+        const user = { displayName: name, photoURL: url, birthday: startDate, email, companyName, companyLogo, role: 'admin',teamMember: parseInt(selectedOption.value) }
 
         console.log(user)
         // user update
@@ -171,8 +171,12 @@ const AdminLogin = () => {
                         </div>
 
                     </div>
+                    <div className="mb-3">
+                    <p className="text-lg mt-4 font-medium mb-2">Photo URL</p>
+                    <input className="border w-full  rounded-3xl text-base font-normal px-5 py-2 bg-[#F3F3F3]" type="url" name="url" placeholder="Enter your image url" id="10002" /><br />
+                    </div>
                     <div className="mb-2">
-                        <label>Select Package</label>
+                        <label className="text-lg mt-4 font-medium">Select Package</label>
                         
                         <Select className=""
                             value={selectedOption}
