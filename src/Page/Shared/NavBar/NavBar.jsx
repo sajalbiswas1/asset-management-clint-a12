@@ -9,8 +9,89 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 const NavBar = () => {
 
     const { userSignOut, user } = useContext(AuthContext)
-    // const [mode, setMode] = useState("light");
 
+    const navList = <>
+        <li className=""><NavLink className="text-base hover:bg-white hover:text-black  " to={'/'} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? "red" : "",
+                backgroundColor: isActive ? 'white' : '',
+                textDecoration: isActive ? "underline" : '',
+            };
+        }}>Home</NavLink></li>
+        {
+            user?.email ? <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/myAsset'} style={({ isActive }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isActive ? "red" : "",
+                    backgroundColor: isActive ? 'white' : '',
+                    textDecoration: isActive ? "underline" : '',
+                };
+            }}>My Asset</NavLink></li>
+            :
+            <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/SignUp'} style={({ isActive }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isActive ? "red" : "",
+                    backgroundColor: isActive ? 'white' : '',
+                    textDecoration: isActive ? "underline" : '',
+                };
+            }}>Join as Employee</NavLink></li>
+        }
+
+
+        {
+            user?.email?<li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/myTeam'} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? "red" : "",
+                backgroundColor: isActive ? 'white' : '',
+                textDecoration: isActive ? "underline" : '',
+            };
+        }}>My Team</NavLink></li>
+        :
+        <li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/adminLogIn'} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? "red" : "",
+                backgroundColor: isActive ? 'white' : '',
+                textDecoration: isActive ? "underline" : '',
+            };
+        }}>Join as Admin</NavLink></li>
+        }
+
+        {
+            user?.email?<li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/requestAsset'} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? "red" : "",
+                backgroundColor: isActive ? 'white' : '',
+                textDecoration: isActive ? "underline" : '',
+            };
+        }}>Request Asset</NavLink></li>:''
+        }
+        {
+            user?.email?<li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/myTeam'} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? "red" : "",
+                backgroundColor: isActive ? 'white' : '',
+                textDecoration: isActive ? "underline" : '',
+            };
+        }}>Custom Request</NavLink></li>:''
+        }
+        {
+            user?.email?<li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/profile'} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? "red" : "",
+                backgroundColor: isActive ? 'white' : '',
+                textDecoration: isActive ? "underline" : '',
+            };
+        }}>Profile</NavLink></li>:''
+        }
+
+    </>
 
 
     return (
@@ -21,96 +102,22 @@ const NavBar = () => {
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li className="text-black"><NavLink className=" md:text-xl " to={'/'} style={({ isActive }) => {
-                                return {
-                                    fontWeight: isActive ? "bold" : "",
-                                    color: isActive ? "red" : "",
-                                    backgroundColor: isActive ? 'white' : '',
-                                    textDecoration: isActive ? "underline" : '',
-                                };
-                            }}>Home</NavLink></li>
-                            <li className="text-black"><NavLink className="md:text-xl " to={'/SignUp'} style={({ isActive }) => {
-                                return {
-                                    fontWeight: isActive ? "bold" : "",
-                                    color: isActive ? "red" : "",
-                                    backgroundColor: isActive ? 'white' : '',
-                                    textDecoration: isActive ? "underline" : '',
-                                };
-                            }}>Join as Employee</NavLink></li>
-                            <li className="text-black"><NavLink className="md:text-xl " to={'/adminLogIn'} style={({ isActive }) => {
-                                return {
-                                    fontWeight: isActive ? "bold" : "",
-                                    color: isActive ? "red" : "",
-                                    backgroundColor: isActive ? 'white' : '',
-                                    textDecoration: isActive ? "underline" : '',
-                                };
-                            }}>Join as Admin</NavLink></li>
-                            {/* <li className="text-black"><NavLink className="md:text-xl " to={'/featureblog'} style={({ isActive }) => {
-                                return {
-                                    fontWeight: isActive ? "bold" : "",
-                                    color: isActive ? "red" : "",
-                                    backgroundColor: isActive ? 'white' : '',
-                                    textDecoration: isActive ? "underline" : '',
-                                };
-                            }}>Feature Blog</NavLink></li>
-                            <li className="text-black"><NavLink className="md:text-xl " to={'/wishlist'} style={({ isActive }) => {
-                                return {
-                                    fontWeight: isActive ? "bold" : "",
-                                    color: isActive ? "red" : "",
-                                    backgroundColor: isActive ? 'white' : '',
-                                    textDecoration: isActive ? "underline" : '',
-                                };
-                            }}> Wishlist</NavLink></li> */}
+                        <ul tabIndex={0} className="text-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52">
+                            
+                            {navList}
+
                         </ul>
                     </div>
                     <div className="flex items-center">
-                    <img className="w-16" src="https://i.ibb.co/PMVBBg0/3587817.png" alt="" />
+                        <img className="w-16" src="https://i.ibb.co/PMVBBg0/3587817.png" alt="" />
                         <Link to={'/'}><p className="text-3xl font-bold flex flex-col">Asset</p></Link>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li className=""><NavLink className="text-base hover:bg-white  " to={'/'} style={({ isActive }) => {
-                            return {
-                                fontWeight: isActive ? "bold" : "",
-                                color: isActive ? "red" : "",
-                                backgroundColor: isActive ? 'white' : '',
-                                textDecoration: isActive ? "underline" : '',
-                            };
-                        }}>Home</NavLink></li>
-                        <li><NavLink className="text-base hover:bg-white" to={'/SignUp'} style={({ isActive }) => {
-                            return {
-                                fontWeight: isActive ? "bold" : "",
-                                color: isActive ? "red" : "",
-                                backgroundColor: isActive ? 'white' : '',
-                                textDecoration: isActive ? "underline" : '',
-                            };
-                        }}>Join as Employee</NavLink></li>
-                        <li><NavLink className="text-base hover:bg-white  " to={'/adminLogIn'} style={({ isActive }) => {
-                            return {
-                                fontWeight: isActive ? "bold" : "",
-                                color: isActive ? "red" : "",
-                                backgroundColor: isActive ? 'white' : '',
-                                textDecoration: isActive ? "underline" : '',
-                            };
-                        }}>Join as Admin</NavLink></li>
-                        {/* <li><NavLink className="text-base hover:bg-white  " to={'/featureblog'} style={({ isActive }) => {
-                            return {
-                                fontWeight: isActive ? "bold" : "",
-                                color: isActive ? "red" : "",
-                                backgroundColor: isActive ? 'white' : '',
-                                textDecoration: isActive ? "underline" : '',
-                            };
-                        }}>Feature Blog</NavLink></li>
-                        <li><NavLink className="text-base hover:bg-white " to={'/wishlist'} style={({ isActive }) => {
-                            return {
-                                fontWeight: isActive ? "bold" : "",
-                                color: isActive ? "red" : "",
-                                backgroundColor: isActive ? 'white' : '',
-                                textDecoration: isActive ? "underline" : '',
-                            };
-                        }}> Wishlist</NavLink></li> */}
+                       
+                        {navList}
+
                     </ul>
                 </div>
                 <div className="navbar-end">
@@ -127,12 +134,12 @@ const NavBar = () => {
                                 <div className="dropdown dropdown-end">
                                     <label tabIndex={0} className=""><img className='w-10 h-10 m-auto rounded-full' src={user.photoURL === null ? "https://i.ibb.co/VB17ZCv/user.png" : user?.photoURL} alt="" /></label>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li><a onClick={userSignOut}>Sign Out</a></li>
+                                        <li className="text-black"><a onClick={userSignOut}>Sign Out</a></li>
                                     </ul>
                                 </div>
 
                             </div>
-                            <Link ><button onClick={userSignOut} className="text-white bg-stone-700 rounded-lg px-5 md:block hidden py-2 text-lg font-bold">LogOut</button> </Link>
+                            {/* <Link ><button onClick={userSignOut} className="text-white bg-stone-700 rounded-lg px-5 md:block hidden py-2 text-lg font-bold">LogOut</button> </Link> */}
                         </>
                             : <div className="flex md:block">
                                 <Link to={'/logIn'} className="text-white bg-stone-700 rounded-lg px-3 hover:text-stone-700 border border-white hover:bg-white  py-1 text-base md:text-lg font-bold">LogIn</Link>
