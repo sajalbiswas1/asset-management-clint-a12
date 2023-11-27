@@ -39,7 +39,7 @@ const Banner = () => {
                     <p className='bg-zinc-950 z-10 absolute top-0 bg-opacity-70 h-full w-full'></p>
                     <div className='absolute bottom-6 mb-20 left-[40%] z-20'>
                         <p className='text-4xl mb-7 font-bold text-white'>Join as Admin</p>
-                    <Link className='text-xl font-medium ml-24 mb-14 bg-rose-500 px-7 py-1 rounded-md text-white' to={'/signUp'}>Join</Link>
+                    <Link className='text-xl font-medium ml-24 mb-14 bg-rose-500 px-7 py-1 rounded-md text-white' to={'/adminLogIn'}>Join</Link>
                     </div>
                     </SwiperSlide>
                 </div>

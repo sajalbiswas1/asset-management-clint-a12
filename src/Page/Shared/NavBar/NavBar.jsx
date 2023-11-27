@@ -38,7 +38,7 @@ const NavBar = () => {
                                     textDecoration: isActive ? "underline" : '',
                                 };
                             }}>Join as Employee</NavLink></li>
-                            <li className="text-black"><NavLink className="md:text-xl " to={'/blogsall'} style={({ isActive }) => {
+                            <li className="text-black"><NavLink className="md:text-xl " to={'/adminLogIn'} style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : "",
                                     color: isActive ? "red" : "",
@@ -87,7 +87,7 @@ const NavBar = () => {
                                 textDecoration: isActive ? "underline" : '',
                             };
                         }}>Join as Employee</NavLink></li>
-                        <li><NavLink className="text-base hover:bg-white  " to={'/SignUpq'} style={({ isActive }) => {
+                        <li><NavLink className="text-base hover:bg-white  " to={'/adminLogIn'} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
                                 color: isActive ? "red" : "",
