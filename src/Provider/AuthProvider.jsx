@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
     // create user 
     const userSignIn = (email, password) => {
+        console.log(email,password)
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }

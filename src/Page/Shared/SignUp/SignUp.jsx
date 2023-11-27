@@ -10,24 +10,27 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 //date picker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useAxios from "../../../Component/Hooks/useAxios";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
     const { userSignIn, userProfileUpdate } = useContext(AuthContext);
     const [errorRegister, setErrorRegister] = useState('');
     const [startDate, setStartDate] = useState(new Date());
+    const axiosApi = useAxios();
     const [show, setShow] = useState(false);
     const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
         const name = e.target.name.value
-        const url = e.target.url.value
+        // const url = e.target.url.value
         const email = e.target.email.value;
         const password = e.target.password.value;
         const accepted = e.target.terms.checked;
-        const obj = { displayName: name, photoURL: url }
-        const test = { displayName: name, photoURL: url, startDate }
+        const obj = { displayName: name, photoURL: '' }
+        const user = { displayName: name, photoURL: '', birthday: startDate, email, role: 'employee' }
 
-        console.log(test)
+        console.log(user)
         // user update
         const userUpdate = () => {
             userProfileUpdate(obj)
@@ -80,6 +83,9 @@ const SignUp = () => {
                 notify()
                 userUpdate()
                 console.log(result)
+                axiosApi.post('/users', user)
+                    .then(res => console.log(res.data))
+                    .catch(error => console.log(error))
                 navigate('/')
             })
             .catch(error => {
@@ -94,6 +100,9 @@ const SignUp = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Asset | Join</title>
+            </Helmet>
             <div className="h-20 bg-slate-500">
 
             </div>

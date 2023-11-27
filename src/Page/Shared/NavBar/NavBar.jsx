@@ -1,13 +1,14 @@
 // import { useContext, useEffect } from "react";
-import { useState } from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 // import { AuthContext } from "../../AuthProvider/AuthProvider";
 // import { BsBrightnessHigh } from 'react-icons/bs';
 // import { MdDarkMode } from "react-icons/md";
 
 const NavBar = () => {
 
-    const { userSignOut, user } = useState()//useContext(AuthContext)
+    const { userSignOut, user } = useContext(AuthContext)
     // const [mode, setMode] = useState("light");
 
 

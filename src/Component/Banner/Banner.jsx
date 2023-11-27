@@ -24,7 +24,7 @@ const Banner = () => {
                 className="mySwiper"
             >
                 <div className=''>
-                <SwiperSlide>
+                <SwiperSlide key={23}>
                     <img className='w-full h-[600px]' src="https://i.ibb.co/s9MknJP/Untitled-design-39.png" alt="" />
                     <p className='bg-zinc-950 z-10 absolute top-0 bg-opacity-70 h-full w-full'></p>
                     <div className='absolute bottom-6 mb-20 left-[40%] z-20'>
