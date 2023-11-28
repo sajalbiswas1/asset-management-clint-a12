@@ -2,13 +2,31 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
-// import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../../Component/Hooks/useAxios";
 // import { BsBrightnessHigh } from 'react-icons/bs';
-// import { MdDarkMode } from "react-icons/md";
 
 const NavBar = () => {
 
-    const { userSignOut, user } = useContext(AuthContext)
+    const { userSignOut, user } = useContext(AuthContext);
+    const axiosApi = useAxios();
+    const url = `/users/v1?email=${user?.email}`;
+    const { data } = useQuery({
+        enabled: !!user?.email,
+        queryKey: ['currentUser', user?.email],
+        queryFn: async () => {
+            const response = await axiosApi.get(url)
+            return response.data;
+        }
+    });
+    let dataAdmin = {}
+    if (data) {
+        dataAdmin = data[0].role
+    }
+    console.log(dataAdmin)
+
+
+
 
     const navList = <>
         <li className=""><NavLink className="text-base hover:bg-white hover:text-black  " to={'/'} style={({ isActive }) => {
@@ -19,77 +37,143 @@ const NavBar = () => {
                 textDecoration: isActive ? "underline" : '',
             };
         }}>Home</NavLink></li>
+
+        {/* nav List 2 */}
+
         {
-            user?.email ? <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/myAsset'} style={({ isActive }) => {
+            dataAdmin === "admin" ? <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/assetList'} style={({ isActive }) => {
                 return {
                     fontWeight: isActive ? "bold" : "",
                     color: isActive ? "red" : "",
                     backgroundColor: isActive ? 'white' : '',
                     textDecoration: isActive ? "underline" : '',
                 };
-            }}>My Asset</NavLink></li>
+            }}>Asset List</NavLink></li>
+             : 
+             <>{
+                user?.email ? <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/myAsset'} style={({ isActive }) => {
+                    return {
+                        fontWeight: isActive ? "bold" : "",
+                        color: isActive ? "red" : "",
+                        backgroundColor: isActive ? 'white' : '',
+                        textDecoration: isActive ? "underline" : '',
+                    };
+                }}>My Asset</NavLink></li>
+                    :
+                    <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/SignUp'} style={({ isActive }) => {
+                        return {
+                            fontWeight: isActive ? "bold" : "",
+                            color: isActive ? "red" : "",
+                            backgroundColor: isActive ? 'white' : '',
+                            textDecoration: isActive ? "underline" : '',
+                        };
+                    }}>Join as Employee</NavLink></li>
+            }
+            </>}
+        {/* nav List 3 */}
+
+        {
+            dataAdmin === "admin" ? <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/addAsset'} style={({ isActive }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isActive ? "red" : "",
+                    backgroundColor: isActive ? 'white' : '',
+                    textDecoration: isActive ? "underline" : '',
+                };
+            }}>Add Asset</NavLink></li>
             :
-            <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/SignUp'} style={({ isActive }) => {
+            <>{
+            user?.email ? <li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/myTeam'} style={({ isActive }) => {
                 return {
                     fontWeight: isActive ? "bold" : "",
                     color: isActive ? "red" : "",
                     backgroundColor: isActive ? 'white' : '',
                     textDecoration: isActive ? "underline" : '',
                 };
-            }}>Join as Employee</NavLink></li>
+            }}>My Team</NavLink></li>
+                :
+                <li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/adminLogIn'} style={({ isActive }) => {
+                    return {
+                        fontWeight: isActive ? "bold" : "",
+                        color: isActive ? "red" : "",
+                        backgroundColor: isActive ? 'white' : '',
+                        textDecoration: isActive ? "underline" : '',
+                    };
+                }}>Join as Admin</NavLink></li>
+        }</>}
+        {/* Nav List 4 */}
+
+        {
+            dataAdmin === "admin" ? <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/allRequest'} style={({ isActive }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isActive ? "red" : "",
+                    backgroundColor: isActive ? 'white' : '',
+                    textDecoration: isActive ? "underline" : '',
+                };
+            }}>All Request</NavLink></li>
+            :
+            <>{
+                user?.email ? <li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/requestAsset'} style={({ isActive }) => {
+                    return {
+                        fontWeight: isActive ? "bold" : "",
+                        color: isActive ? "red" : "",
+                        backgroundColor: isActive ? 'white' : '',
+                        textDecoration: isActive ? "underline" : '',
+                    };
+                }}>Request Asset</NavLink></li> : ''
+            }</>
+            
+        }
+
+  {/* Nav List 5 */}
+
+        {
+           dataAdmin === "admin" ? <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/customRequestList'} style={({ isActive }) => {
+            return {
+                fontWeight: isActive ? "bold" : "",
+                color: isActive ? "red" : "",
+                backgroundColor: isActive ? 'white' : '',
+                textDecoration: isActive ? "underline" : '',
+            };
+        }}>Custom Request List</NavLink></li> 
+            :<>{
+                user?.email ? <li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/customRequest'} style={({ isActive }) => {
+                    return {
+                        fontWeight: isActive ? "bold" : "",
+                        color: isActive ? "red" : "",
+                        backgroundColor: isActive ? 'white' : '',
+                        textDecoration: isActive ? "underline" : '',
+                    };
+                }}>Custom Request</NavLink></li> : ''
+            }</>
         }
 
 
-        {
-            user?.email?<li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/myTeam'} style={({ isActive }) => {
-            return {
-                fontWeight: isActive ? "bold" : "",
-                color: isActive ? "red" : "",
-                backgroundColor: isActive ? 'white' : '',
-                textDecoration: isActive ? "underline" : '',
-            };
-        }}>My Team</NavLink></li>
-        :
-        <li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/adminLogIn'} style={({ isActive }) => {
-            return {
-                fontWeight: isActive ? "bold" : "",
-                color: isActive ? "red" : "",
-                backgroundColor: isActive ? 'white' : '',
-                textDecoration: isActive ? "underline" : '',
-            };
-        }}>Join as Admin</NavLink></li>
-        }
+          {/* Nav List 6 */}
 
         {
-            user?.email?<li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/requestAsset'} style={({ isActive }) => {
-            return {
-                fontWeight: isActive ? "bold" : "",
-                color: isActive ? "red" : "",
-                backgroundColor: isActive ? 'white' : '',
-                textDecoration: isActive ? "underline" : '',
-            };
-        }}>Request Asset</NavLink></li>:''
+            dataAdmin === "admin" ? <li><NavLink className="text-base hover:bg-white hover:text-black" to={'/myEmployeeList'} style={({ isActive }) => {
+                return {
+                    fontWeight: isActive ? "bold" : "",
+                    color: isActive ? "red" : "",
+                    backgroundColor: isActive ? 'white' : '',
+                    textDecoration: isActive ? "underline" : '',
+                };
+            }}>My Employee List</NavLink></li> 
+            :''
         }
         {
-            user?.email?<li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/myTeam'} style={({ isActive }) => {
-            return {
-                fontWeight: isActive ? "bold" : "",
-                color: isActive ? "red" : "",
-                backgroundColor: isActive ? 'white' : '',
-                textDecoration: isActive ? "underline" : '',
-            };
-        }}>Custom Request</NavLink></li>:''
+                user?.email ? <li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/profile'} style={({ isActive }) => {
+                    return {
+                        fontWeight: isActive ? "bold" : "",
+                        color: isActive ? "red" : "",
+                        backgroundColor: isActive ? 'white' : '',
+                        textDecoration: isActive ? "underline" : '',
+                    };
+                }}>Profile</NavLink></li> : ''
         }
-        {
-            user?.email?<li><NavLink className="text-base hover:bg-white hover:text-black  " to={'/profile'} style={({ isActive }) => {
-            return {
-                fontWeight: isActive ? "bold" : "",
-                color: isActive ? "red" : "",
-                backgroundColor: isActive ? 'white' : '',
-                textDecoration: isActive ? "underline" : '',
-            };
-        }}>Profile</NavLink></li>:''
-        }
+
 
     </>
 
@@ -103,7 +187,7 @@ const NavBar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="text-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52">
-                            
+
                             {navList}
 
                         </ul>
@@ -115,7 +199,7 @@ const NavBar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                       
+
                         {navList}
 
                     </ul>
@@ -139,7 +223,7 @@ const NavBar = () => {
                                 </div>
 
                             </div>
-                            {/* <Link ><button onClick={userSignOut} className="text-white bg-stone-700 rounded-lg px-5 md:block hidden py-2 text-lg font-bold">LogOut</button> </Link> */}
+                            <Link ><button onClick={userSignOut} className="text-white bg-stone-700 rounded-lg px-5 md:block hidden py-2 text-lg font-bold">LogOut</button> </Link>
                         </>
                             : <div className="flex md:block">
                                 <Link to={'/logIn'} className="text-white bg-stone-700 rounded-lg px-3 hover:text-stone-700 border border-white hover:bg-white  py-1 text-base md:text-lg font-bold">LogIn</Link>
