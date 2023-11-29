@@ -6,13 +6,12 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 const AssetList = () => {
     const { user } = useContext(AuthContext);
-
     const axiosApi = useAxios()
     const { data } = useQuery({
         enabled: !!user?.email,
         queryKey: ['assets', user?.email],
         queryFn: async () => {
-            const response = await axiosApi.get(`/assets?email${user?.email}`)
+            const response = await axiosApi.get(`/assets?adminEmail=${user?.email}`)
             return response.data;
         }
     });
@@ -48,8 +47,6 @@ const AssetList = () => {
                                     <td><button className="btn">Delete </button></td>
                             </tr>)
                         }
-
-
                     </tbody>
                 </table>
             </div>

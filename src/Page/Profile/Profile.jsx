@@ -25,9 +25,9 @@ const Profile = () => {
       <div className="min-h-screen">
 
         <div className="grid lg:grid-cols-4 md:grid-cols-2 shadow shadow-current mx-10 rounded p-5">
-          <h4 className="text-xl md:mb-5"><span className="font-semibold">Name:</span> {data.displayName}</h4>
-          <p className="text-xl md:mb-5"><span className="font-semibold">Email:</span> {data.email}</p>
-          <p className="text-xl "><span className="font-semibold">Date Of Birth:</span> {new Date(data.birthday).getDate()}/{new Date(data.birthday).getMonth()}/{new Date(data.birthday).getFullYear()}</p>
+          <h4 className="text-xl md:mb-5"><span className="font-semibold">Name:</span> {data?.displayName}</h4>
+          <p className="text-xl md:mb-5"><span className="font-semibold">Email:</span> {data?.email}</p>
+          <p className="text-xl "><span className="font-semibold">Date Of Birth:</span> {new Date(data?.birthday).getDate()}/{new Date(data?.birthday).getMonth()}/{new Date(data?.birthday).getFullYear()}</p>
           <button className="btn text-xl">Update</button>
         </div>
       </div>

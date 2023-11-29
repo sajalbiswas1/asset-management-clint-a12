@@ -50,7 +50,7 @@ const CustomRequestList = () => {
                                     <td>{list.whyNeed}</td>
                                     <td className="w-52">{list.additionalInformation}</td>
                                     <td><button className="btn">Approve</button></td>
-                                    <td><button className="btn">Rejects</button></td>
+                                    <td><button className="btn">Reject</button></td>
                             </tr>)
                         }
 
