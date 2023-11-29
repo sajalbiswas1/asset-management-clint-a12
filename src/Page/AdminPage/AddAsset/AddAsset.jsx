@@ -15,7 +15,7 @@ const AddAsset = () => {
         const productQuantity = form.productQuantity.value;
         const asset = { productName, productType, productQuantity: parseInt(productQuantity), adminEmail: user.email, postDate:date }
         console.log(asset)
-        axiosApi.post('/assets', asset)
+        axiosApi.post('/custom', asset)
             .then(res => {
                 console.log(res.data)
             })

@@ -10,7 +10,7 @@ const AssetList = () => {
     const axiosApi = useAxios()
     const { data } = useQuery({
         enabled: !!user?.email,
-        queryKey: ['asset', user?.email],
+        queryKey: ['assets', user?.email],
         queryFn: async () => {
             const response = await axiosApi.get(`/assets?email${user?.email}`)
             return response.data;
@@ -43,7 +43,7 @@ const AssetList = () => {
                                     <th>{idx + 1}</th>
                                     <td>{list.productName}</td>
                                     <td>{list.productType}</td>
-                                    <td>{list.postDate.slice(0,10)}</td>
+                                    <td>{list.postDate}</td>
                                     <td><button className="btn">Update</button></td>
                                     <td><button className="btn">Delete </button></td>
                             </tr>)

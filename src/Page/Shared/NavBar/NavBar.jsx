@@ -122,7 +122,7 @@ const NavBar = () => {
                         backgroundColor: isActive ? 'white' : '',
                         textDecoration: isActive ? "underline" : '',
                     };
-                }}>Request Asset</NavLink></li> : ''
+                }}>Request for an Asset</NavLink></li> : ''
             }</>
             
         }
