@@ -43,7 +43,7 @@ const AssetList = () => {
                                     <th>{idx + 1}</th>
                                     <td>{list.productName}</td>
                                     <td>{list.productType}</td>
-                                    <td>{list.postDate}</td>
+                                    <td>{new Date(list.postDate).getDate()}/{new Date(list.postDate).getMonth()}/{new Date(list.postDate).getFullYear()}</td>
                                     <td><button className="btn">Update</button></td>
                                     <td><button className="btn">Delete </button></td>
                             </tr>)
