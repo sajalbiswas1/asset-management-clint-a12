@@ -9,9 +9,9 @@ const MyAsset = () => {
     const axiosApi = useAxios()
     const { data } = useQuery({
         enabled: !!user?.email,
-        queryKey: ['assets', user?.email],
+        queryKey: ['request', user?.email],
         queryFn: async () => {
-            const response = await axiosApi.get(`/assets?email=${user?.email}`)
+            const response = await axiosApi.get(`/requests/v1?requesterEmail=${user?.email}`)
             return response.data;
         }
     });
@@ -27,11 +27,12 @@ const MyAsset = () => {
                     <thead>
                         <tr className="text-xl">
                             <th>Serial</th>
-                            <th>Product Name</th>
-                            <th>ProDuct Type</th>
-                            <th>Date added</th>
-                            <th>Update</th>
-                            <th>Delete</th>
+                            <th>Asset Name</th>
+                            <th>Asset Type</th>
+                            <th>Request Date</th>
+                            <th>Approval Date</th>
+                            <th>Request Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,8 +44,9 @@ const MyAsset = () => {
                                     <td>{list.productName}</td>
                                     <td>{list.productType}</td>
                                     <td>{new Date(list.postDate).getDate()}/{new Date(list.postDate).getMonth()}/{new Date(list.postDate).getFullYear()}</td>
-                                    <td><button className="btn">Update</button></td>
-                                    <td><button className="btn">Delete </button></td>
+                                    <td>{list.approvalDate?<span>{new Date(list.approvalDate).getDate()}/{new Date(list.approvalDate).getMonth()}/{new Date(list.approvalDate).getFullYear()}</span> : 'Empty'}</td>
+                                    <td>{list?.status}</td>
+                                    <td>{list.status === 'pending'? <button className="btn">Cancel the request</button>:<button className="btn">Print</button>}</td>
                             </tr>)
                         }
 

@@ -1,17 +1,17 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider";
+// import { useContext } from "react";
+// import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxios from "../../../Component/Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 
 const AllRequest = () => {
-    const { user } = useContext(AuthContext);
+    // const { user } = useContext(AuthContext);
 
     const axiosApi = useAxios()
     const { data } = useQuery({
-        enabled: !!user?.email,
-        queryKey: ['custom', user?.email],
+        
+        queryKey: ['requests', ],
         queryFn: async () => {
-            const response = await axiosApi.get(`/custom`)
+            const response = await axiosApi.get(`/requests`)
             return response.data;
         }
     });
@@ -45,13 +45,13 @@ const AllRequest = () => {
                             data?.map((list, idx) => <tr className="text-center" key={list._id}>
 
                                 <th>{idx + 1}</th>
-                                <td>{list.assetName}</td>
-                                <td>{list.price}</td>
-                                <td>{list.assetType}</td>
-                                <td><img className="h-20" src={list.assetImage} alt="" /></td>
-                                <td>{list.whyNeed}</td>
-                                <td className="w-52">{list.additionalInformation}</td>
-                                <td><button className="btn">Rejects</button></td>
+                                <td>{list.productName}</td>
+                                <td>{list.productType}</td>
+                                <td>{list.requesterEmail}</td>
+                                <td>{list.requesterName}</td>
+                                <td>{new Date(list.requestDate).getDate()}/{new Date(list.requestDate).getMonth()}/{new Date(list.requestDate).getFullYear()}</td>
+                                <td className="w-52">{list.additionalNote}</td>
+                                <td >{list.status}</td>
                                 <td><button className="btn">Approve</button></td>
                                 <td><button className="btn">Rejects</button></td>
                             </tr>)
