@@ -46,7 +46,7 @@ const MyAsset = () => {
                                     <td>{new Date(list.postDate).getDate()}/{new Date(list.postDate).getMonth()}/{new Date(list.postDate).getFullYear()}</td>
                                     <td>{list.approvalDate?<span>{new Date(list.approvalDate).getDate()}/{new Date(list.approvalDate).getMonth()}/{new Date(list.approvalDate).getFullYear()}</span> : 'Empty'}</td>
                                     <td>{list?.status}</td>
-                                    <td>{list.status === 'pending'? <button className="btn">Cancel the request</button>:<button className="btn">Print</button>}</td>
+                                    <td>{list.status === 'Pending'? <button className="btn">Cancel the request</button>:<button className="btn">Print</button>}</td>
                             </tr>)
                         }
 

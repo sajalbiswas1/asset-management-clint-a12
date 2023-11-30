@@ -1,25 +1,33 @@
 import { useContext } from "react";
 import useAxios from "../../../Component/Hooks/useAxios";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddAsset = () => {
     const { user } = useContext(AuthContext)
     const axiosApi = useAxios();
     const date = new Date();
-    
+
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
         const productName = form.productName.value;
         const productType = form.productType.value;
         const productQuantity = form.productQuantity.value;
-        const asset = { productName, productType, productQuantity: parseInt(productQuantity), adminEmail: user.email, postDate:date }
+        const asset = { productName, productType, productQuantity: parseInt(productQuantity), adminEmail: user.email, postDate: date }
         console.log(asset)
-        axiosApi.post('/custom', asset)
+        axiosApi.post('/assets', asset)
             .then(res => {
+                Swal.fire({
+                    // position: "top-end",
+                    icon: "success",
+                    title: "Asset added Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 console.log(res.data)
             })
-            
+
 
     }
     return (
@@ -42,7 +50,10 @@ const AddAsset = () => {
                             <label className="label">
                                 <span className="label-text text-lg font-medium">Product Type</span>
                             </label>
-                            <input type="text" placeholder="Product Type" name="productType" className="input input-bordered w-full" required />
+                            <select className="input input-bordered" name="productType" id="">
+                                <option value="Returnable">Returnable</option>
+                                <option value="Non-returnable">Non-returnable</option>
+                            </select>
                         </div>
                         <div className="form-control">
                             <label className="label">

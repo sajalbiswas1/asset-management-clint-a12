@@ -35,7 +35,7 @@ const RequestAsset = () => {
                     if (res.data.modifiedCount) {
                         refetch()
                         const { adminEmail, postDate, productName, productType} = list
-                        const requestAsset = { adminEmail: adminEmail, postDate: postDate, productName: productName, productQuantity: productQuantity, productType: productType, requestDate: date, additionalNote: text, status: 'pending', requesterName: user?.displayName, requesterEmail: user?.email };
+                        const requestAsset = { adminEmail: adminEmail, postDate: postDate, productName: productName, productQuantity: productQuantity, productType: productType, requestDate: date, additionalNote: text, status: 'Pending', requesterName: user?.displayName, requesterEmail: user?.email };
                         axiosApi.post('/requests', requestAsset)
                             .then(res => {
                                 Swal.fire({
