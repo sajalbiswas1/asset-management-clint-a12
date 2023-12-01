@@ -34,7 +34,7 @@ const RequestAsset = () => {
                 .then(res => {
                     if (res.data.modifiedCount) {
                         refetch()
-                        const { adminEmail, postDate, productName, productType} = list
+                        const { adminEmail, postDate, productName, productType } = list
                         const requestAsset = { adminEmail: adminEmail, postDate: postDate, productName: productName, productQuantity: productQuantity, productType: productType, requestDate: date, additionalNote: text, status: 'Pending', requesterName: user?.displayName, requesterEmail: user?.email };
                         axiosApi.post('/requests', requestAsset)
                             .then(res => {
@@ -50,15 +50,12 @@ const RequestAsset = () => {
                     }
                     console.log(res.data)
                 })
-
         }
-
-
     }
 
     console.log(data)
     return (
-        <div className="lg:w-10/12 md:w-10/12 m-auto mb-20 min-h-screen">
+        <div className="lg:w-10/12 md:w-10/12 m-auto mb-20 min-h-screen bg-slate-200">
             <div className="h-20 bg-slate-500">
                 {/* navbar bg */}
             </div>

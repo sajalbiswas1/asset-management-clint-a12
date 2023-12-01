@@ -49,7 +49,7 @@ const AdminLogin = () => {
         const companyLogo = e.target.logo.value;
         const accepted = e.target.terms.checked;
         const obj = { displayName: name, photoURL: url }
-        const user = { displayName: name, photoURL: url, birthday: startDate, email, companyName, companyLogo, role: 'admin',teamMember: parseInt(selectedOption.value) }
+        const user = { displayName: name, photoURL: url, birthday: startDate, email, companyName, companyLogo, role: 'admin',teamMember: parseInt(selectedOption.value),team:user?.email }
 
         console.log(user)
         // user update

@@ -11,13 +11,13 @@ const MyAsset = () => {
         enabled: !!user?.email,
         queryKey: ['request', user?.email],
         queryFn: async () => {
-            const response = await axiosApi.get(`/requests/v1?requesterEmail=${user?.email}`)
+            const response = await axiosApi.get(`/requests/v4?requesterEmail=${user?.email}`)
             return response.data;
         }
     });
     console.log(data)
     return (
-        <div className="lg:w-10/12 md:w-10/12 m-auto mb-20 min-h-screen">
+        <div className="lg:w-10/12 md:w-10/12 m-auto mb-20 min-h-screen bg-slate-200">
             <div className="h-20 bg-slate-500">
                 {/* navbar bg */}
             </div>
