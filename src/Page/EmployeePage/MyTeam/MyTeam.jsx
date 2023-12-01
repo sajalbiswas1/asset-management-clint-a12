@@ -30,6 +30,7 @@ const MyTeam = () => {
                             <th>Serial</th>
                             <th>Member Image</th>
                             <th>Member Name</th>
+                            <th>Date Of Birth</th>
                             <th>Member Type</th>
                         </tr>
                     </thead>
@@ -41,6 +42,7 @@ const MyTeam = () => {
                                 <th>{idx + 1}</th>
                                 <td><img className="h-20 w-20 rounded-lg m-auto" src={list.photoURL} alt="" /></td>
                                 <td>{list.displayName}</td>
+                                <td>{list.birthday}</td>
                                 <td>{list.role}</td>
 
                             </tr>)
